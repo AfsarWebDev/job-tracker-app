@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BriefcaseBusiness, Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import trackrLogo from "../../assets/trackr-logo.png";
 
 function LandingNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,9 +25,11 @@ function LandingNavbar() {
           onClick={() => setIsMenuOpen(false)}
           className="group flex items-center gap-2 justify-self-start"
         >
-          <div className="w-9 h-9 rounded-xl bg-blue-600 text-white grid place-items-center transition group-hover:bg-blue-500 group-hover:scale-105 dark:bg-blue-500">
-            <BriefcaseBusiness size={18} />
-          </div>
+          <img
+            src={trackrLogo}
+            alt="Trackr logo"
+            className="w-10 h-10 object-contain transition group-hover:scale-105"
+          />
           <span className="font-semibold text-lg text-gray-950 transition group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
             Trackr
           </span>

@@ -1,5 +1,5 @@
-import { BriefcaseBusiness } from "lucide-react";
 import { Link } from "react-router-dom";
+import trackrLogo from "../../assets/trackr-logo.png";
 
 function LandingFooter() {
   return (
@@ -9,9 +9,11 @@ function LandingFooter() {
           to="/"
           className="group flex items-center justify-center md:justify-start gap-2"
         >
-          <div className="w-9 h-9 rounded-xl bg-blue-500 text-white grid place-items-center transition group-hover:bg-blue-400 group-hover:scale-105">
-            <BriefcaseBusiness size={18} />
-          </div>
+          <img
+            src={trackrLogo}
+            alt="Trackr logo"
+            className="w-10 h-10 object-contain transition group-hover:scale-105"
+          />
 
           <span className="inline-block font-semibold text-white transition group-hover:text-blue-400 group-hover:scale-105">
             Trackr

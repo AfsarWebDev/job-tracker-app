@@ -20,7 +20,7 @@ function HeroSection() {
 
         <h1 className="mt-8 text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-gray-950 dark:text-white">
           Track your job hunt
-          <span className="block text-blue-500 dark:text-blue-400">
+          <span className="block text-blue-600 dark:text-blue-400">
             like a pro.
           </span>
         </h1>
