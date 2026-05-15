@@ -61,7 +61,7 @@ function DashboardStats({ jobs, onCardClick, statusFilter }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-5 xl:gap-6 mb-8">
       {stats.map((stat) => {
         const Icon = stat.icon;
         const isActive = statusFilter === stat.filterValue;
@@ -70,19 +70,23 @@ function DashboardStats({ jobs, onCardClick, statusFilter }) {
           <div
             key={stat.label}
             onClick={() => onCardClick(stat.filterValue)}
-            className={`cursor-pointer relative rounded-lg shadow-md p-4 border-l-4 transition duration-200 hover:shadow-lg hover:-translate-y-1 ${stat.borderColor} 
+            className={`cursor-pointer relative rounded-lg shadow-md p-3 md:p-4 border-l-4 transition duration-200 hover:shadow-lg hover:-translate-y-1 ${stat.borderColor} 
             ${
               isActive
-                ? `${stat.bgColor} dark:bg-gray-800 ring-2 ring-offset-2 dark:ring-offset-gray-900 ${stat.ringColor} shadow-lg`
+                ? `${stat.bgColor} dark:bg-gray-800 ring-2 ring-offset-1 md:ring-offset-2 dark:ring-offset-gray-900 ${stat.ringColor} shadow-lg`
                 : "bg-white dark:bg-gray-800 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600"
             }`}
           >
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-300">{stat.label}</p>
-            <h3 className={`text-2xl font-bold mt-2 ${stat.textColor}`}>
+            <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-300">
+              {stat.label}
+            </p>
+            <h3
+              className={`text-xl md:text-2xl font-bold mt-2 ${stat.textColor}`}
+            >
               {stat.value}
             </h3>
             <Icon
-              className={`absolute top-3 right-3 w-6 h-6 ${stat.textColor}`}
+              className={`absolute top-3 right-3 w-5 h-5 md:w-6 md:h-6 ${stat.textColor}`}
             />
           </div>
         );

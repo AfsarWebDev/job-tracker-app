@@ -21,7 +21,7 @@ function Dashboard({ jobs, setJobs }) {
   }, [searchTerm]);
 
   function handleJobClick(job) {
-    console.log("Clicked job:", job);
+    handleEditJob(job);
   }
 
   function handleDeleteJob(id) {
@@ -78,20 +78,22 @@ function Dashboard({ jobs, setJobs }) {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
         <div>
-        <h2 className="text-2xl font-bold">Dashboard</h2>
-        <p className="text-gray-500 mt-2">
-        Here's how your job hunt is going.
-      </p>
-      </div>
-      <div>
-        <button
-          onClick={handleAddJobClick}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-        >
-          + Add New Job
-        </button>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+            Dashboard
+          </h2>
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mt-2">
+            Here's how your job hunt is going.
+          </p>
+        </div>
+        <div>
+          <button
+            onClick={handleAddJobClick}
+            className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            + Add New Job
+          </button>
         </div>
       </div>
 
@@ -101,19 +103,19 @@ function Dashboard({ jobs, setJobs }) {
         statusFilter={statusFilter}
       />
 
-      <div className="grid gap-4 mb-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
+      <div className="grid grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 mb-6">
         <input
           type="text"
           placeholder="Search by role or company"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
-          className="col-span-1 sm:col-span-2 lg:col-span-5 w-full border border-gray-300 rounded-lg px-4 py-2"
+          className="col-span-2 lg:col-span-4 h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:placeholder:text-gray-500"
         />
 
         <select
           value={statusFilter}
           onChange={(event) => setStatusFilter(event.target.value)}
-          className="col-span-1 lg:col-span-2 w-full border border-gray-300 rounded-lg px-4 py-2 bg-white"
+          className="lg:col-span-2 h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
         >
           <option value="All">All Statuses</option>
           <option value="Applied">Applied</option>
@@ -125,7 +127,7 @@ function Dashboard({ jobs, setJobs }) {
         <select
           value={sortOption}
           onChange={(event) => setSortOption(event.target.value)}
-          className="col-span-1 lg:col-span-2 w-full border border-gray-300 rounded-lg px-4 py-2 bg-white"
+          className="lg:col-span-2 h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
         >
           <option value="latest">Latest</option>
           <option value="oldest">Oldest</option>
@@ -136,19 +138,19 @@ function Dashboard({ jobs, setJobs }) {
         <button
           type="button"
           onClick={handleClearFilters}
-          className="col-span-1 sm:col-span-2 lg:col-span-3 w-full lg:w-auto border border-gray-300 rounded-lg px-4 py-2 bg-white hover:bg-gray-50 transition"
+          className="h-10 rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
         >
           Clear Filters
         </button>
-      </div>
 
-      <button
-        type="button"
-        onClick={() => setShowHiddenJobs((prev) => !prev)}
-        className="col-span-1 sm:col-span-2. lg:col-span-3 mb-4 px-4 py-2 rounded-lg border-gray-300 bg-white text-medium hover:bg-gray-50 transition"
-      >
-        {showHiddenJobs ? "Hide Hidden Jobs" : "Show Hidden Jobs"}
-      </button>
+        <button
+          type="button"
+          onClick={() => setShowHiddenJobs((prev) => !prev)}
+          className="h-10 rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+        >
+          {showHiddenJobs ? "Hide Hidden" : "Show Hidden"}
+        </button>
+      </div>
 
       {editingJob && (
         <EditJobForm

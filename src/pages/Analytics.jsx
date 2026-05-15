@@ -22,7 +22,6 @@ import {
 import { motion } from "framer-motion";
 
 function Analytics({ jobs }) {
-  console.log("jobs", jobs);
   const totalApplications = jobs.length;
   const applied = jobs.filter((job) => job.status === "Applied").length;
   const interview = jobs.filter((job) => job.status === "Interview").length;
@@ -123,14 +122,14 @@ function Analytics({ jobs }) {
     curr.value > prev.value ? curr : prev,
   );
 
-  if (overallRate >= 20) {
+  if (overallRateNumber >= 20) {
     InsightIcon = TrendingUp;
     confidenceScore = 90;
     insightColor = "text-green-600";
     insightBorder = "border-green-500";
 
     insightMessage = (
-      <>Strong offer converson. Your applications are performing well.</>
+      <>Strong offer conversion. Your applications are performing well.</>
     );
   } else if (rejected > applied) {
     InsightIcon = AlertTriangle;
@@ -140,7 +139,7 @@ function Analytics({ jobs }) {
 
     insightMessage = (
       <>
-        High rejection rate. Condider improving{" "}
+        High rejection rate. Consider improving{" "}
         <span className="font-semibold text-red-500">resume</span> or targeting.
       </>
     );
@@ -187,7 +186,7 @@ function Analytics({ jobs }) {
     const color = statusColors[data.name];
 
     return (
-      <div className="bg-white border border-gray-200 shadow-sm px-3 py-2">
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm px-3 py-2 rounded-lg">
         <p className="font-light" style={{ color }}>
           {data.name}: {data.value} ({data.percentage}%)
         </p>
@@ -196,27 +195,35 @@ function Analytics({ jobs }) {
   }
 
   return (
-    <div>
+    <div className="space-y-6">
       {/* Header */}
-      <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+        Analytics
+      </h1>
 
-      <p className="text-gray-500 mt-2">Your job hunt funnel at a glance.</p>
+      <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mt-2">
+        Your job hunt funnel at a glance.
+      </p>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 md:gap-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
             <div
               key={stat.label}
-              className={`bg-white rounded-lg shadow-sm border-l-4 p-4 ${stat.borderColor}`}
+              className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-3 md:p-4 border-l-4 transition duration-200 ${stat.borderColor}`}
             >
               <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">{stat.label}</p>
+                <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-300">
+                  {stat.label}
+                </p>
                 <Icon size={24} className={stat.textColor} />
               </div>
 
-              <h3 className={`text-2xl font-bold mt-2 ${stat.textColor}`}>
+              <h3
+                className={`text-xl md:text-2xl font-bold mt-2 ${stat.textColor}`}
+              >
                 {stat.value}
               </h3>
             </div>
@@ -225,13 +232,13 @@ function Analytics({ jobs }) {
       </div>
 
       {/* Conversion Section */}
-      <h3 className="text-lg font-semibold text-gray-800 mt-8">
+      <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
         Conversion Metrics
       </h3>
 
       {/* Conversion Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
           <p className="text-sm text-gray-500">Overall Success Rate</p>
           <h3 className="text-2xl font-bold mt-2 text-blue-600">
             {overallRate}%
@@ -241,24 +248,28 @@ function Analytics({ jobs }) {
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
-          <p className="text-sm text-gray-500">Conversion Rate</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+          <p className="text-sm text-gray-500 dark:text-gray-300">
+            Conversion Rate
+          </p>
           <h3 className="text-2xl font-bold mt-2 text-green-600">
             {conversionRate}%
           </h3>
-          <p className="text-xs text-gray-400 mt-1">Applied → Offer</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+            Applied → Offer
+          </p>
         </div>
       </div>
 
       {/* Chart Section */}
-      <h3 className="text-lg font-semibold text-gray-800 mt-8">
+      <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-8">
         Applications Insights
       </h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
         {/* Bar Chart */}
-        <div className="bg-white rounded-lg shadow-sm border p-4">
-          <h3 className="text-md font-semibold text-gray-800 mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 overflow-hidden">
+          <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-4">
             Applications by Status
           </h3>
 
@@ -283,8 +294,8 @@ function Analytics({ jobs }) {
         </div>
 
         {/* Pie Chart Section */}
-        <div className="bg-white rounded-lg shadow-sm border p-4">
-          <h3 className="text-md font-semibold text-gray-800 mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 overflow-hidden">
+          <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-4">
             Status Distribution
           </h3>
           <div className="w-full h-64 outline-none [&_*]:outline-none">
@@ -317,37 +328,45 @@ function Analytics({ jobs }) {
       </div>
 
       {/* Legend Section */}
-      <div className="bg-white rounded-lg shadow-sm border p-4 mt-6">
-        <h3 className="text-md font-semibold text-gray-800 mb-4">
-          Status Legned
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+        <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-4">
+          Status Legend
         </h3>
 
-        <div className="flex flex-wrap items-center gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
           {chartData.map((item) => (
-            <div key={item.name} className="flex items-center gap-2">
+            <div key={item.name} className="flex items-center gap-2 sm:gap-3 min-w-0 whitespace-nowrap">
               <span
-                className="w-3 h-3 rounded-full"
+                className="w-3 h-3 rounded-full shrink-0"
                 style={{ backgroundColor: statusColors[item.name] }}
               ></span>
-              <span className="text-sm text-gray-600">{item.name}</span>
-              <span className="text-sm text-gray-600">{item.value}</span>
-              <span className="text-xs text-gray-400">{item.percentage}%</span>
+              <span className="text-sm text-gray-600 dark:text-gray-300">
+                {item.name}
+              </span>
+              <span className="text-sm text-gray-400 dark:text-gray-500">
+                {item.value}
+              </span>
+              <span className="text-xs text-gray-400 dark:text-gray-500 ml-1">
+                {item.percentage}%
+              </span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Insights Section */}
-      <h3 className="text-lg font-semibold text-gray-800 mt-8">Insights</h3>
+      <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-8">
+        Insights
+      </h3>
 
       {/* Insight Card */}
       <motion.div
         key={confidenceScore}
         initial={{ opacity: 0, y: 20, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity:0, y: -10 }}
+        exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className={`bg-white rounded-lg shadow-sm border-l-[6px] ${insightBorder} p-4 mt-4 transition-all duration-300 ease-out`}
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 border-l-[6px] ${insightBorder} p-4 mt-4 transition-all duration-300 ease-out`}
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
@@ -356,18 +375,22 @@ function Analytics({ jobs }) {
             </div>
 
             <div>
-              <p className="text-sm text-gray-500">Insight</p>
-              <h3 className="text-lg font-semibold text-gray-900 mt-2">
+              <p className="text-sm text-gray-500 dark:text-gray-300">
+                Insight
+              </p>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mt-2">
                 {insightMessage}
               </h3>
-              <p className="text-sm text-gray-400 mt-2">
+              <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">
                 Based on your current offer rate from total applications.
               </p>
             </div>
           </div>
 
-          <div className="text-right shrink-0">
-            <p className="text-xs text-gray-400">Confidence</p>
+          <div className="sm:text-right shrink-0">
+            <p className="text-xs text-gray-400 dark:text-gray-500">
+              Confidence
+            </p>
             <p className={`text-lg font-bold ${insightColor}`}>
               {confidenceScore}%
             </p>

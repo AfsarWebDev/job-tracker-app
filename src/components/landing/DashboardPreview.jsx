@@ -32,8 +32,7 @@ function DashboardPreview() {
     {
       label: "Interview",
       value:
-        columns.find((column) => column.title === "Interview")?.jobs.length ||
-        0,
+        columns.find((column) => column.title === "Interview")?.jobs.length || 0,
       note: "2 upcoming",
       icon: Clock3,
     },

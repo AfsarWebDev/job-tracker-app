@@ -12,7 +12,7 @@ function LandingFooter() {
           <img
             src={trackrLogo}
             alt="Trackr logo"
-            className="w-10 h-10 object-contain transition group-hover:scale-105"
+            className="w-9 h-9 object-contain transition group-hover:scale-105"
           />
 
           <span className="inline-block font-semibold text-white transition group-hover:text-blue-400 group-hover:scale-105">

@@ -21,24 +21,28 @@ function JobCard({ job, onClick, onDelete, onEdit, onHide }) {
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-md rounded-lg p-4 hover:shadow-lg transition duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
     >
       {/* Job Info */}
       <div className="space-y-1">
-        <h3 className="text-lg font-semibold">{role}</h3>
-        <p className="text-gray-600">{company}</p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          {role}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-300">{company}</p>
       </div>
 
       {/* Footer */}
-      <div className="mt-4 flex justify-between items-center">
+      <div className="mt-4 flex justify-between items-center gap-3">
         <span
-          className={`text-xs font-medium px-3 py-1 rounded-full ${getStatusStyles(status)}`}
+          className={`inline-flex shrink-0 text-xs font-medium px-3 py-1 rounded-full ${getStatusStyles(status)}`}
         >
           {status}
         </span>
 
-        <div className="flex items-center gap-3">
-          <span className="text-xs text-gray-400">{date}</span>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="text-xs text-gray-400 whitespace-nowrap dark:text-gray-200">
+            {date}
+          </span>
 
           {/* Hide Button */}
           <button
@@ -47,7 +51,7 @@ function JobCard({ job, onClick, onDelete, onEdit, onHide }) {
               e.stopPropagation();
               onHide?.(job.id);
             }}
-            className="text-gray-400 hover:text-blue-600 transition"
+            className="text-gray-400 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition"
             aria-label={job.isHidden ? "Unhide job" : "Hide job"}
           >
             {job.isHidden ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -60,10 +64,10 @@ function JobCard({ job, onClick, onDelete, onEdit, onHide }) {
               e.stopPropagation();
               onEdit?.(job);
             }}
-            className="text-gray-400 hover:text-blue-600 transition"
+            className="text-gray-400 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400 transition"
             aria-label="Edit job"
           >
-            <Pencil size={18} /> 
+            <Pencil size={18} />
           </button>
 
           {/* Delete Button */}
@@ -73,7 +77,7 @@ function JobCard({ job, onClick, onDelete, onEdit, onHide }) {
               e.stopPropagation();
               onDelete?.(job.id);
             }}
-            className="text-gray-400 hover:text-red-600 transition"
+            className="text-gray-400 hover:text-red-600 dark:text-gray-200 dark:hover:text-red-400 transition"
             aria-label="Delete job"
           >
             <Trash2 size={18} />
@@ -87,15 +91,15 @@ function JobCard({ job, onClick, onDelete, onEdit, onHide }) {
 function getStatusStyles(status) {
   switch (status) {
     case "Applied":
-      return "bg-blue-100 text-blue-700";
+      return "bg-blue-100 text-blue-700 dark:bg-blue-200 dark:text-blue-900";
     case "Interview":
-      return "bg-yellow-100 text-yellow-700";
+      return "bg-yellow-100 text-yellow-700 dark:bg-yellow-200 dark:text-yellow-900";
     case "Rejected":
-      return "bg-red-100 text-red-700";
+      return "bg-red-100 text-red-700 dark:bg-red-200 dark:text-red-900";
     case "Offer":
-      return "bg-green-100 text-green-700";
+      return "bg-green-100 text-green-700 dark:bg-green-200 dark:text-green-900";
     default:
-      return "bg-gray-100 text-gray-700";
+      return "bg-gray-100 text-gray-700 dark:bg-gray-200 dark:text-gray-900";
   }
 }
 
