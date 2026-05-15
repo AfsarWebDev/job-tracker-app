@@ -103,7 +103,7 @@ function Dashboard({ jobs, setJobs }) {
         statusFilter={statusFilter}
       />
 
-      <div className="grid grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 mb-6 items-center">
         <input
           type="text"
           placeholder="Search by role or company"
@@ -138,7 +138,7 @@ function Dashboard({ jobs, setJobs }) {
         <button
           type="button"
           onClick={handleClearFilters}
-          className="h-10 rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+          className="col-span-1 lg:col-span-2 h-10 rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition whitespace-nowrap dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
         >
           Clear Filters
         </button>
@@ -146,7 +146,7 @@ function Dashboard({ jobs, setJobs }) {
         <button
           type="button"
           onClick={() => setShowHiddenJobs((prev) => !prev)}
-          className="h-10 rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+          className="col-span-1 lg:col-span-2 h-10 rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition whitespace-nowrap dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
         >
           {showHiddenJobs ? "Hide Hidden" : "Show Hidden"}
         </button>

@@ -239,11 +239,11 @@ function Analytics({ jobs }) {
       {/* Conversion Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
-          <p className="text-sm text-gray-500">Overall Success Rate</p>
+          <p className="text-sm text-gray-500 dark:text-gray-300">Overall Success Rate</p>
           <h3 className="text-2xl font-bold mt-2 text-blue-600">
             {overallRate}%
           </h3>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
             Based on total applications
           </p>
         </div>
@@ -268,7 +268,7 @@ function Analytics({ jobs }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
         {/* Bar Chart */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 md:p-6 overflow-hidden">
           <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-4">
             Applications by Status
           </h3>
@@ -294,7 +294,7 @@ function Analytics({ jobs }) {
         </div>
 
         {/* Pie Chart Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 md:p-6 overflow-hidden">
           <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-4">
             Status Distribution
           </h3>
@@ -328,25 +328,28 @@ function Analytics({ jobs }) {
       </div>
 
       {/* Legend Section */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-6">
         <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-4">
           Status Legend
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-6 lg:flex lg:flex-wrap lg:items-center lg:gap-8">
           {chartData.map((item) => (
-            <div key={item.name} className="flex items-center gap-2 sm:gap-3 min-w-0 whitespace-nowrap">
+            <div
+              key={item.name}
+              className="flex items-center gap-2 sm:gap-3 min-w-0"
+            >
               <span
                 className="w-3 h-3 rounded-full shrink-0"
                 style={{ backgroundColor: statusColors[item.name] }}
               ></span>
-              <span className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-300 truncate">
                 {item.name}
               </span>
-              <span className="text-sm text-gray-400 dark:text-gray-500">
+              <span className="text-sm text-gray-400 dark:text-gray-500 shrink-0">
                 {item.value}
               </span>
-              <span className="text-xs text-gray-400 dark:text-gray-500 ml-1">
+              <span className="text-sm text-gray-400 dark:text-gray-500 shrink-0">
                 {item.percentage}%
               </span>
             </div>
@@ -366,7 +369,7 @@ function Analytics({ jobs }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 border-l-[6px] ${insightBorder} p-4 mt-4 transition-all duration-300 ease-out`}
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border dark:border-gray-700 border-l-[6px] ${insightBorder} p-4 mt-4 transition-all duration-300 ease-out`}
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">

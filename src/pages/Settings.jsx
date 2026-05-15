@@ -94,7 +94,7 @@ function Settings({ jobs, setJobs, name, setName }) {
     },
     {
       id: 12,
-      role: "Frontend Enginner",
+      role: "Frontend Engineer",
       company: "Wipro",
       status: "Applied",
       date: "Today",
@@ -130,12 +130,10 @@ function Settings({ jobs, setJobs, name, setName }) {
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
 
   useEffect(() => {
-    const root = document.documentElement;
-
     if (theme === "dark") {
-      root.classList.add("dark");
+      document.documentElement.classList.add("dark");
     } else {
-      root.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     }
 
     localStorage.setItem("theme", theme);
@@ -155,6 +153,10 @@ function Settings({ jobs, setJobs, name, setName }) {
       window.removeEventListener("keydown", handleEsc);
     };
   }, [showConfirm]);
+
+  function handleThemeChange(selectedTheme) {
+    setTheme(selectedTheme);
+  }
 
   function handleRestoreData() {
     setJobs(demoJobs);
@@ -187,20 +189,26 @@ function Settings({ jobs, setJobs, name, setName }) {
           {toast}
         </div>
       )}
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold">Settings</h1>
-        <p className="text-gray-500 mt-2">Manage your profile and data.</p>
+      <div className="max-w-4xl mx-auto space-y-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+          Settings
+        </h1>
+        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mt-2">
+          Manage your profile and data.
+        </p>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6 mt-8">
-          <h3 className="text-lg font-semibold text-gray-800">Profile</h3>
-          <p className="text-sm text-gray-500 mt-1">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Profile
+          </h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             Your display name and email.
           </p>
 
           {/* Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Name
               </label>
               <input
@@ -212,7 +220,7 @@ function Settings({ jobs, setJobs, name, setName }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Email
               </label>
               <input
@@ -226,22 +234,26 @@ function Settings({ jobs, setJobs, name, setName }) {
           </div>
           <button
             onClick={handleSaveProfile}
-            className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition hover:shadow-md"
+            className="mt-6 w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition hover:shadow-md"
           >
             Save changes
           </button>
         </div>
 
         {/* Appearance */}
-        <div className="bg-white rounded-lg shadow-sm border p-6 mt-6">
-          <h3 className="text-lg font-semibold text-gray-900">Appearance</h3>
-          <p className="text-sm text-gray-500 mt-1">Choose your theme.</p>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Appearance
+          </h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Choose your theme.
+          </p>
 
-          <div className="flex gap-3 mt-6">
+          <div className="grid grid-cols-2 gap-4 mt-6 sm:flex">
             {/* Dark Button */}
             <button
-              onClick={() => setTheme("dark")}
-              className={`px-4 py-2 rounded-lg border ${
+              onClick={() => handleThemeChange("dark")}
+              className={`w-full sm:w-auto px-4 py-2 rounded-lg border ${
                 theme === "dark"
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "border-gray-300 bg-white hover:bg-gray-200 transition"
@@ -252,8 +264,8 @@ function Settings({ jobs, setJobs, name, setName }) {
 
             {/* Light Button */}
             <button
-              onClick={() => setTheme("light")}
-              className={`px-4 py-2 rounded-lg border ${
+              onClick={() => handleThemeChange("light")}
+              className={`w-full sm:w-auto px-4 py-2 rounded-lg border ${
                 theme === "light"
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "border border-gray-300 bg-white hover:bg-gray-200 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700"
@@ -265,7 +277,7 @@ function Settings({ jobs, setJobs, name, setName }) {
         </div>
 
         {/* Data */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border dark:border-gray-700 p-6 mt-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Data
           </h3>
@@ -273,17 +285,17 @@ function Settings({ jobs, setJobs, name, setName }) {
             Manage your application data.
           </p>
 
-          <div className="flex flex-wrap gap-3 mt-6">
+          <div className="grid grid-cols-2 sm:flex gap-4 mt-6">
             <button
               onClick={handleRestoreData}
-              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+              className="w-full sm:w-auto px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
             >
               Restore demo data
             </button>
 
             <button
               onClick={() => setShowConfirm(true)}
-              className="px-4 py-2 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 dark:border-red-500 dark:text-red-400 dark:hover:bg-red-900/30 transition"
+              className="w-full sm:w-auto px-4 py-2 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 dark:border-red-500 dark:text-red-400 dark:hover:bg-red-900/30 transition"
             >
               Clear all applications
             </button>

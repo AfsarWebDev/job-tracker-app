@@ -10,7 +10,7 @@ function DroppableColumn({ status, children }) {
   return (
     <div
       ref={setNodeRef}
-      className="bg-gray-100 rounded-lg p-4 min-h-96 flex flex-col"
+      className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 min-h-96 flex flex-col"
     >
       {children}
     </div>
@@ -36,13 +36,6 @@ function DraggableJobCard({ job, children }) {
 }
 function Applications({ jobs, setJobs }) {
   function handleStatusChange(id, newStatus) {
-    console.log("Changing:", id, newStatus);
-
-    if (!setJobs) {
-      console.error("setJobs missing");
-      return;
-    }
-
     setJobs((prevJobs) =>
       prevJobs.map((job) =>
         job.id === id ? { ...job, status: newStatus } : job,
@@ -68,40 +61,48 @@ function Applications({ jobs, setJobs }) {
   }
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold">Applications</h2>
-      <p className="text-gray-500 mt-2">
-        Manage and track your job applications by status.
-      </p>
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+          Applications
+        </h2>
+        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mt-2">
+          Manage and track your job applications by status.
+        </p>
+      </div>
 
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
           {statuses.map((status) => {
             const filteredJobs = jobs.filter((job) => job.status === status);
 
             return (
               <DroppableColumn key={status} status={status}>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-700">{status}</h3>
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200">
+                    {status}
+                  </h3>
                   <span className="text-xs text-gray-600 bg-gray-200 dark:bg-gray-700 dark:text-gray-100 px-2 py-1 rounded-full">
                     {filteredJobs.length}
                   </span>
                 </div>
 
                 {filteredJobs.length === 0 ? (
-                  <p className="text-sm text-gray-400">No Jobs</p>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">
+                    No Jobs
+                  </p>
                 ) : (
                   <div className="flex flex-col gap-3 mt-2">
                     {filteredJobs.map((job) => (
                       <DraggableJobCard key={job.id} job={job}>
-                        <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg hover:shadow-md transition">
-                          <p className="font-semibold text-gray-800">
+                        <div className="p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md transition">
+                          <p className="font-semibold text-gray-800 dark:text-white">
                             {job.role}
                           </p>
-                          <p className="text-sm text-gray-500 mt-1">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                             {job.company}
                           </p>
-                          <span className="inline-block mt-3 text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-600">
+                          <span className="inline-block mt-3 text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                             {job.status}
                           </span>
                           <select
@@ -109,7 +110,7 @@ function Applications({ jobs, setJobs }) {
                             onChange={(e) =>
                               handleStatusChange(job.id, e.target.value)
                             }
-                            className="mt-3 w-full border border-gray-300 rounded-lg px-2 py-1 text-sm"
+                            className="mt-3 w-full border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 text-sm bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200"
                           >
                             <option value="Applied">Applied</option>
                             <option value="Interview">Interview</option>
