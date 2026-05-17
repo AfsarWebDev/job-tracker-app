@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import Applications from "./pages/Applications";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const defaultJobs = [
@@ -152,6 +154,8 @@ function App() {
   }, [jobs]);
 
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       {/* Public Landing Page */}
       <Route path="/" element={<LandingPage />} />
@@ -194,8 +198,9 @@ function App() {
           </Layout>
         }
       />
-      <Route path="*" element={<LandingPage />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   );
 }
 

@@ -30,7 +30,7 @@ function Sidebar() {
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 border-t dark:border-gray-700 p-2 md:static md:w-64 md:min-h-screen md:border-r md:border-t-0 md:p-4">
       <Link
         to="/"
-        className="hidden md:flex items-center gap-2 mb-6"
+        className="hidden md:flex text-xl font-bold text-gray-900 dark:text-white hover:text-blye-600 dark:hover:text-blue-600 transition items-center gap-2 mb-6"
       >
         <img 
         src={trackrLogo} 

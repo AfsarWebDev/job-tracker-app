@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 function HeroSection() {
   return (
-    <section id="about" className="relative overflow-hidden scroll-mt-24">
+    <section id="home" className="relative overflow-hidden scroll-mt-24">
       <div className="absolute inset-0 bg-gradient-to-b from-blue-100 via-white to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-950" />
 
       <motion.div

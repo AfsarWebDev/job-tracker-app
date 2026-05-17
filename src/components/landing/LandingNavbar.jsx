@@ -37,10 +37,10 @@ function LandingNavbar() {
 
         <nav className="hidden md:flex items-center justify-center gap-8 text-sm text-gray-500 dark:text-gray-400 justify-self-center">
           <a
-            href="#about"
+            href="#home"
             className="hover:text-blue-600 transition dark:hover:text-blue-400"
           >
-            About
+            Home
           </a>
 
           <a
@@ -95,11 +95,11 @@ function LandingNavbar() {
           <div className="w-52 rounded-2xl border border-gray-200 bg-white p-3 shadow-lg dark:border-gray-800 dark:bg-gray-900">
             <nav className="flex flex-col gap-1 text-sm text-gray-600">
               <a
-                href="#about"
+                href="#home"
                 onClick={() => setIsMenuOpen(false)}
                 className="rounded-lg px-3 py-2 hover:bg-blue-50 hover:text-blue-600 transition dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-blue-400"
               >
-                About
+                Home
               </a>
               <a
                 href="#features"

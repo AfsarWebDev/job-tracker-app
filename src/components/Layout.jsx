@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Sidebar from "./navigation/Sidebar";
 import { Link } from "react-router-dom";
-import { LogOut, Settings, User } from "lucide-react";
+import { Home, LogOut, Settings, User } from "lucide-react";
 
 function Layout({ children, name }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -59,6 +59,14 @@ function Layout({ children, name }) {
 
             {isDropdownOpen && (
               <div className="absolute right-0 mt-3 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg overflow-hidden z-50">
+                <Link
+                  to="/"
+                  onClick={() => setIsDropdownOpen(false)}
+                  className="flex items-center gap-2 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                >
+                  <Home size={16} />
+                  Home
+                </Link>
                 <Link
                   to="/settings"
                   onClick={() => setIsDropdownOpen(false)}
